@@ -11,7 +11,8 @@
 	<groupId>br.com.p2as</groupId>
 	<artifactId>p2as</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>p2as</name>
+	<packaging>pom</packaging>
+	<name>parent-p2as</name>
 	<description>People as a Service</description>
 	<properties>
 		<java.version>17</java.version>
@@ -65,4 +66,11 @@
 		</plugins>
 	</build>
 
+	<modules>
+		<module>p2as-cliente</module>
+		<module>p2as-profissional</module>
+		<module>p2as-auth</module>
+		<module>p2as-localizacao</module>
+		<module>p2as-api</module>
+	</modules>
 </project>
