@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mysqlsrv:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "Ws2022!"
+      MYSQL_DATABASE: "p2as_db"
+    ports:
+      - "3307:3306"
+    volumes:
+      - /home/renatogroffe/Desenvolvimento/Docker/Volumes/MySql:/var/lib/mysql
+    networks:
+      - p2as-network
+
+networks: 
+  p2as-network:
+    driver: bridge
