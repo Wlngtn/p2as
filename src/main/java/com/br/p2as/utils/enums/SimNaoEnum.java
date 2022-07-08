@@ -1,4 +1,4 @@
-package com.br.p2as.model.enums;
+package com.br.p2as.utils.enums;
 
 public enum SimNaoEnum {
 	S("Sim", true), N("Não", false);

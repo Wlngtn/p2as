@@ -2,7 +2,7 @@ package com.br.p2as.service;
 
 import java.util.List;
 
-import com.br.p2as.model.Pessoa;
+import com.br.p2as.model.pessoa.Pessoa;
 
 public interface IPessoaService {
 
