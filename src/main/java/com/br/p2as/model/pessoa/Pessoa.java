@@ -1,15 +1,22 @@
-package com.br.p2as.model;
+package com.br.p2as.model.pessoa;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.br.p2as.model.enums.SimNaoEnum;
+import com.br.p2as.model.endereco.Endereco;
+import com.br.p2as.model.usuario.Usuario;
+import com.br.p2as.utils.enums.SimNaoEnum;
 
 
 @Entity
@@ -26,11 +33,16 @@ public class Pessoa {
 	@Column(name = "TX_NOME", nullable = false, length = 100, unique = true, updatable = false)
 	private String nome;
 
-	@Column(name = "TX_STATUS", length = 1)
+	@Column(name = "TX_STATUS", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum status = SimNaoEnum.S;
 	
-	
+	@OneToMany(mappedBy = "pessoa", fetch = FetchType.EAGER)
+	private List<Endereco> enderecos;
+
+	@OneToOne(optional = true)
+	private Usuario usuario;
+		
 	public Pessoa(String cpf, String nome) {
 		this.cpf = cpf;
 		this.nome = nome;
@@ -73,6 +85,14 @@ public class Pessoa {
 
 	public void setStatus(SimNaoEnum status) {
 		this.status = status;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 	
 }
