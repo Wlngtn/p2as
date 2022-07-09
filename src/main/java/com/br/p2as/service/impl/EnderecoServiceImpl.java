@@ -44,4 +44,30 @@ public class EnderecoServiceImpl implements IEnderecoService{
 		repository.deleteById(endereco.getId());
 	}
 
+	@Override
+	public List<Endereco> buscarTodos(Long idPessoa) {
+		List<Endereco> enderecos = repository.findAllByPessoaId(idPessoa);
+		enderecos.parallelStream().forEach(p -> p.setPessoa(null));
+		return enderecos;
+	}
+
+	@Override
+	public Endereco buscarPorIdPessoaId(Long idPessoa, Long id) {
+		Endereco endereco = repository.getByIdPessoaId(idPessoa, id);
+		return endereco;
+	}
+
+	@Override
+	public Endereco criarEndereco(Long idPessoa, Endereco endereco) {
+		endereco.setPessoa(new Pessoa());
+		endereco.getPessoa().setId(idPessoa);
+		endereco = repository.save(endereco);
+		return endereco;
+	}
+
+	@Override
+	public void excluirEndereco(Long idPessoa, Endereco endereco) {
+		repository.deleteByIdPessoaId(idPessoa, endereco.getId());
+	}
+
 }

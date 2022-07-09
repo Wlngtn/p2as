@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "50387d29-3f86-4293-af63-f200ef9e183f",
+		"name": "Pessoa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19246370"
+	},
+	"item": [
+		{
+			"name": "Criar Pessoa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\":\"Maria\",\r\n    \"cpf\":\"11111111112\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/pessoas"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar pessoas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/pessoas"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Pessoa por Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"1\"\r\n}"
+				},
+				"url": "http://localhost:8080/api/pessoas"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Pessoa Por Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/pessoas/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Endereços de pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/pessoa/1/enderecos/"
+			},
+			"response": []
+		}
+	]
+}

@@ -42,7 +42,7 @@ public class Usuario {
 	private String clientSecret;
 	
 	@Column(name = "DH_CRIACAO")
-	private LocalDateTime dataCriacao;
+	private LocalDateTime dataCriacao = LocalDateTime.now();
 	
 	@Column(name = "DH_INATIVACAO")
 	private LocalDateTime datainatvacao;

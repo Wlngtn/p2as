@@ -15,36 +15,37 @@ import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.service.IEnderecoService;
 
 @RestController
-@RequestMapping(value="/api/pessoa")
+
+@RequestMapping(value="/api")
 public class EnderecoResource {
 	
 	@Autowired
 	private IEnderecoService service;
 	
-	@GetMapping("/enderecos")
-	public List<Endereco> getPessoas() {
-		List<Endereco> endereco = service.buscarTodos();
+	@GetMapping("/pessoa/{idPessoa}/enderecos")
+	public List<Endereco> getPessoas(@PathVariable(value="idPessoa") long idPessoa) {
+		List<Endereco> endereco = service.buscarTodos(Long.valueOf(idPessoa));
 		return endereco;
 	}
 	
-	@GetMapping("/endereco/{id}")
-	public Endereco getEndereco(@PathVariable(value="id") long id) {
-		Endereco endereco = service.buscarPorId(Long.valueOf(id));
+	@GetMapping("/pessoa/{idPessoa}/enderecos/{id}")
+	public Endereco getEndereco(@PathVariable(value="idPessoa") long idPessoa, @PathVariable(value="id") long id) {
+		Endereco endereco = service.buscarPorIdPessoaId(Long.valueOf(idPessoa), Long.valueOf(id));
 		return endereco;
 	}
 	
-	@PostMapping("/endereco")
-	public Endereco addEnderecos(@RequestBody Endereco endereco) {
+	@PostMapping("/pessoa/{idPessoa}/enderecos")
+	public Endereco addEnderecos(@PathVariable(value="idPessoa") long idPessoa, @RequestBody Endereco endereco) {
 		try {
-			return service.criarEndereco(endereco);
+			return service.criarEndereco(Long.valueOf(idPessoa), endereco);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	@DeleteMapping("/endereco")
-	public void deleteEndereco(@RequestBody Endereco endereco) {
-			service.excluirEndereco(endereco);
+	@DeleteMapping("/pessoa/{idPessoa}/enderecos")
+	public void deleteEndereco(@PathVariable(value="idPessoa") long idPessoa, @RequestBody Endereco endereco) {
+			service.excluirEndereco(Long.valueOf(idPessoa), endereco);
 	}
 }
