@@ -15,7 +15,7 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 		
 		@Query("from Endereco where pessoa = ?1")
 		public List<Endereco> findAllByPessoa(Pessoa pessoa);
-		
+
 		@Query("from Endereco where pessoa.id = ?1")
 		public List<Endereco> findAllByPessoaId(Long idPessoa);
 		

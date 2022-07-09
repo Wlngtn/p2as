@@ -15,6 +15,7 @@ import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.service.IEnderecoService;
 
 @RestController
+
 @RequestMapping(value="/api")
 public class EnderecoResource {
 	
