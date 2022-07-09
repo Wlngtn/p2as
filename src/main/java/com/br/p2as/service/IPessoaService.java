@@ -2,8 +2,11 @@ package com.br.p2as.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.br.p2as.model.pessoa.Pessoa;
 
+@Service
 public interface IPessoaService {
 
 	Pessoa criarPessoa(Pessoa pessoa) throws Exception;
