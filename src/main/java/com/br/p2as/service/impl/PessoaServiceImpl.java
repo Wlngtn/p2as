@@ -15,6 +15,9 @@ public class PessoaServiceImpl implements IPessoaService{
 	@Autowired
 	private PessoaRepository repository;
 	
+	@Autowired
+	private EnderecoServiceImpl enderecoService;
+	
 	@Override
 	public Pessoa criarPessoa(Pessoa pessoa) throws Exception {
 		pessoa = repository.save(pessoa);
@@ -28,7 +31,9 @@ public class PessoaServiceImpl implements IPessoaService{
 
 	@Override
 	public Pessoa buscarPorId(Long id) {
-		return repository.getById(id);
+		Pessoa pessoa = repository.getById(id);
+		pessoa.setEnderecos(enderecoService.buscarEnderecosPessoa(pessoa));
+		return pessoa;
 	}
 
 	@Override
