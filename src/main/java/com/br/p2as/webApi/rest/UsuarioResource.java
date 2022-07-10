@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.br.p2as.exception.EnderecoNotFoundException;
 import com.br.p2as.exception.UsuarioNotFoundException;
 import com.br.p2as.model.endereco.Endereco;
+
 import com.br.p2as.model.usuario.Usuario;
 import com.br.p2as.service.IUsuarioService;
 
@@ -29,10 +31,11 @@ public class UsuarioResource {
 	@GetMapping("/pessoa/{idPessoa}/usuarios")
 	public Usuario getUsuario(@PathVariable(value="idPessoa") long idPessoa) {
 		Usuario usuario = service.buscarPorPessoaId(idPessoa);
+
 		if(usuario == null) {
 			throw new UsuarioNotFoundException("Pessoa com id - " + idPessoa + " não possui usuário cadastrado");
 		}
-		
+
 		return usuario;
 	}
 	
@@ -48,7 +51,7 @@ public class UsuarioResource {
 					.toUri();
 			
 			return ResponseEntity.created(location).build();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,5 +68,6 @@ public class UsuarioResource {
 		}
 		
 		service.excluirUsuario(Long.valueOf(idPessoa), Long.valueOf(id));
+
 	}
 }

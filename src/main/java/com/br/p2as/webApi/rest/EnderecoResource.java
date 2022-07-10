@@ -30,21 +30,24 @@ public class EnderecoResource {
 	
 	@GetMapping("/pessoa/{idPessoa}/enderecos")
 	public List<Endereco> getPessoas(@PathVariable(value="idPessoa") long idPessoa) {
+
 		List<Endereco> enderecos = service.buscarTodos(Long.valueOf(idPessoa));
 		if(enderecos == null || enderecos.isEmpty()) {
 			throw new EnderecoNotFoundException("Pessoa com id " + idPessoa + " não possui endereço cadastrado");
 		}
 		
 		return enderecos;
+
 	}
 	
 	@GetMapping("/pessoa/{idPessoa}/enderecos/{id}")
 	public Endereco getEndereco(@PathVariable(value="idPessoa") long idPessoa, @PathVariable(value="id") long id) {
 		Endereco endereco = service.buscarPorIdPessoaId(Long.valueOf(idPessoa), Long.valueOf(id));
+
 		if(endereco == null) {
 			throw new EnderecoNotFoundException("id - " + id);
 		}
-		
+
 		return endereco;
 	}
 	
@@ -60,7 +63,7 @@ public class EnderecoResource {
 					.toUri();
 			
 			return ResponseEntity.created(location).build();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,5 +80,6 @@ public class EnderecoResource {
 		}
 		
 		service.excluirEndereco(Long.valueOf(idPessoa), endereco);
+
 	}
 }
