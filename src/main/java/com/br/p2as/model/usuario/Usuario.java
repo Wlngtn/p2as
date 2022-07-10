@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.utils.enums.SimNaoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TB_002_USUARIO")
@@ -26,12 +27,15 @@ public class Usuario {
 	@Column(name = "TX_LOGIN", nullable = false, length = 8)
 	private String login;
 	
+	@JsonIgnore
 	@Column(name = "TX_SENHA", nullable = false)
 	private String senha;
 	
+	@JsonIgnore
 	@Column(name = "TX_TENANT_ID")
 	private String tenantId;
 	
+	@JsonIgnore
 	@Column(name = "TX_TENANT_SECRET")
 	private String tenantSecret;
 	
@@ -41,9 +45,11 @@ public class Usuario {
 	@Column(name = "TX_CLIENT_SECRET")
 	private String clientSecret;
 	
+	@JsonIgnore
 	@Column(name = "DH_CRIACAO")
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	
+	@JsonIgnore
 	@Column(name = "DH_INATIVACAO")
 	private LocalDateTime datainatvacao;
 	
