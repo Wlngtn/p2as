@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.br.p2as.exception.EnderecoNotFoundException;
 import com.br.p2as.exception.UsuarioNotFoundException;
+import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.model.usuario.Usuario;
 import com.br.p2as.service.IUsuarioService;
 
@@ -55,6 +57,13 @@ public class UsuarioResource {
 	
 	@DeleteMapping("/pessoa/{idPessoa}/usuarios/{id}")
 	public void deleteUsuario(@PathVariable(value="idPessoa") long idPessoa, @PathVariable(value="id") long id) {
-			service.excluirUsuario(Long.valueOf(idPessoa), Long.valueOf(id));
+		
+		Usuario usuarioBusca = service.buscarPorIdPessoaId(idPessoa, Long.valueOf(id));
+		
+		if(usuarioBusca == null) {
+			throw new UsuarioNotFoundException("Pessoa com id - " + idPessoa + " não possui usuário cadastrado");
+		}
+		
+		service.excluirUsuario(Long.valueOf(idPessoa), Long.valueOf(id));
 	}
 }

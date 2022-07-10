@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.p2as.exception.EnderecoNotFoundException;
+import com.br.p2as.exception.PessoaNotFoundException;
 import com.br.p2as.model.endereco.Endereco;
+import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.service.IEnderecoService;
 
 @RestController
@@ -67,6 +69,13 @@ public class EnderecoResource {
 	
 	@DeleteMapping("/pessoa/{idPessoa}/enderecos")
 	public void deleteEndereco(@PathVariable(value="idPessoa") long idPessoa, @RequestBody Endereco endereco) {
-			service.excluirEndereco(Long.valueOf(idPessoa), endereco);
+		
+		Endereco enderecoBusca = service.buscarPorIdPessoaId(Long.valueOf(idPessoa), endereco.getId());
+		
+		if(enderecoBusca == null) {
+			throw new EnderecoNotFoundException("Pessoa com id " + idPessoa + " não possui endereço cadastrado");
+		}
+		
+		service.excluirEndereco(Long.valueOf(idPessoa), endereco);
 	}
 }

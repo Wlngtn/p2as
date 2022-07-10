@@ -62,6 +62,13 @@ public class PessoaResource {
 	
 	@DeleteMapping("/pessoas")
 	public void deletePessoas(@RequestBody Pessoa pessoa) {
-			service.excluirPessoa(pessoa);
+		
+		Pessoa pessoaBusca = service.buscarPorId(pessoa.getId());
+		
+		if(pessoaBusca == null) {
+			throw new PessoaNotFoundException("id - " + pessoa.getId());
+		}
+		
+		service.excluirPessoa(pessoaBusca);
 	}
 }
