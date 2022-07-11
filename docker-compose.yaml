@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   mysqlsrv:
     image: mysql:5.7
     environment:
@@ -13,6 +14,26 @@ services:
     networks:
       - p2as-network
 
+  naming-server:
+    image: wlngtn/p2as-naming-server:220711
+    ports:
+      - "8761:8761"
+    networks:
+      - p2as-network
+
+  api:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8080:8080"
+    networks:
+      - p2as-network
+    deploy:
+      mode: global
+    depends_on:
+      - mysqlsrv  
+      
 networks: 
   p2as-network:
     driver: bridge
+      
+   
