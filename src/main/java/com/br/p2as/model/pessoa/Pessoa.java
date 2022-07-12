@@ -17,6 +17,7 @@ import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.model.usuario.Usuario;
 import com.br.p2as.utils.enums.SimNaoEnum;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TB_001_PESSOA")
@@ -36,9 +37,11 @@ public class Pessoa {
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum status = SimNaoEnum.S;
 	
+	@JsonIgnore
 	@Transient
 	private List<Endereco> enderecos;
 
+	@JsonIgnore
 	@OneToOne(optional = true)
 	private Usuario usuario;
 		

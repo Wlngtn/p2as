@@ -32,7 +32,8 @@ public class PessoaServiceImpl implements IPessoaService{
 	@Override
 	public Pessoa buscarPorId(Long id) {
 		Pessoa pessoa = repository.getById(id);
-		pessoa.setEnderecos(enderecoService.buscarEnderecosPessoa(pessoa));
+		if(pessoa != null)
+			pessoa.setEnderecos(enderecoService.buscarEnderecosPessoa(pessoa));
 		return pessoa;
 	}
 
