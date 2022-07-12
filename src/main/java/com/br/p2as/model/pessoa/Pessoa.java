@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.model.usuario.Usuario;
 import com.br.p2as.utils.enums.SimNaoEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TB_001_PESSOA")

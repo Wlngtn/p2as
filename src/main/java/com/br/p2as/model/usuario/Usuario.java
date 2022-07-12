@@ -50,7 +50,7 @@ public class Usuario {
 	private LocalDateTime dataCriacao = LocalDateTime.now();
 	
 	@JsonIgnore
-	@Column(name = "DH_INATIVACAO")
+  @Column(name = "DH_INATIVACAO")
 	private LocalDateTime datainatvacao;
 	
 	@Column(name = "TX_STATUS", length = 1, nullable = false)

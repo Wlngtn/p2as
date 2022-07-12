@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.utils.enums.SimNaoEnum;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -21,6 +22,7 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+
 	@JsonIgnore
 	@OneToOne
 	private Pessoa pessoa;
@@ -45,7 +47,7 @@ public class Endereco {
 	
 	@Column(name = "TX_BRASIL", nullable = false)
 	private String pais;
-	
+
 	@Column(name = "TX_STATUS", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum status = SimNaoEnum.S;
