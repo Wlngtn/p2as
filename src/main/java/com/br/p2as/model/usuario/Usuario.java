@@ -27,6 +27,7 @@ public class Usuario {
 	@Column(name = "TX_LOGIN", nullable = false, length = 8)
 	private String login;
 	
+	@JsonIgnore
 	@Column(name = "TX_SENHA", nullable = false)
 	private String senha;
 	
