@@ -22,7 +22,7 @@ import com.br.p2as.model.usuario.Usuario;
 import com.br.p2as.service.IUsuarioService;
 
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value="/v1/api")
 public class UsuarioResource {
 	
 	@Autowired

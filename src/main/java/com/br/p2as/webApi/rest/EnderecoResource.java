@@ -22,7 +22,7 @@ import com.br.p2as.service.IEnderecoService;
 
 @RestController
 
-@RequestMapping(value="/api")
+@RequestMapping(value="/v1/api")
 public class EnderecoResource {
 	
 	@Autowired

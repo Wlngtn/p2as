@@ -20,7 +20,7 @@ import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.service.IPessoaService;
 
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value="/v1/api")
 public class PessoaResource {
 	
 	@Autowired
