@@ -3,8 +3,8 @@ package com.br.p2as.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.model.usuario.Usuario;
+import com.br.p2as.repository.PessoaRepository;
 import com.br.p2as.repository.UsuarioRepository;
 import com.br.p2as.service.IUsuarioService;
 
@@ -13,6 +13,9 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Autowired
 	private UsuarioRepository repository;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
 
 	@Override
 	public Usuario buscarPorPessoaId(Long idPessoa) {
@@ -28,8 +31,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Override
 	public Usuario criarUsuario(Long idPessoa, Usuario usuario) {
-		usuario.setPessoa(new Pessoa());
-		usuario.getPessoa().setId(idPessoa);
+		usuario.setPessoa(pessoaRepository.getById(idPessoa));
 		usuario = repository.save(usuario);
 		return usuario;
 	}
@@ -37,6 +39,12 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	@Override
 	public void excluirUsuario(Long idPessoa, Long id) {
 		repository.deleteByIdPessoaId(idPessoa, id);
+	}
+
+	@Override
+	public Usuario buscarPorLogin(String login) {
+		Usuario usuario = repository.getByLogin(login);
+		return usuario;
 	}
 	
 

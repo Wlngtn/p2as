@@ -17,4 +17,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 		@Query("delete from Usuario where pessoa.id = ?1 and id = ?2")
 		public void deleteByIdPessoaId(Long idPessoa, Long id);
 
+		@Query("from Usuario where login = ?1")
+		public Usuario getByLogin(String login);
+
 }
