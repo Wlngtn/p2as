@@ -5,16 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.br.p2as.model.pessoa.Pessoa;
+import com.br.p2as.utils.enums.TipoPessoaEnum;
 
 @Service
 public interface IPessoaService {
 
-	Pessoa criarPessoa(Pessoa pessoa) throws Exception;
-
 	List<Pessoa> buscarTodos();
-
 	Pessoa buscarPorId(Long id);
-
-	void excluirPessoa(Pessoa pessoa);
+	Pessoa criarPessoa(Pessoa pessoa, TipoPessoaEnum tipoPessoaNovo);
 
 }

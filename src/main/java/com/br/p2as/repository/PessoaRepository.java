@@ -11,5 +11,9 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 		@Nullable
 		@Query("from Pessoa where id = ?1")
 		public Pessoa getById(Long id);
+
+		@Nullable
+		@Query("from Pessoa where cpfCnpj = ?1")
+		public Pessoa getByCpfCnpj(String cpfCnpj);
 	
 }

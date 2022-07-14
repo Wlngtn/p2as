@@ -9,26 +9,26 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.model.usuario.Usuario;
 import com.br.p2as.utils.enums.SimNaoEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.br.p2as.utils.enums.TipoPessoaEnum;
+import com.br.p2as.utils.enums.TipoPessoaFisicaJuridicaEnum;
 
 @Entity
-@Table(name="TB_001_PESSOA")
+@Table(name="TB_000_PESSOA")
 public class Pessoa {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "TX_CPF", nullable = false, length = 11, unique = true, updatable = false)
-	private String cpf;
+	@Column(name = "TX_CPF_CNPJ", nullable = false, length = 11, unique = true, updatable = false)
+	private String cpfCnpj;
 	
 	@Column(name = "TX_NOME", nullable = false, length = 100, unique = true, updatable = false)
 	private String nome;
@@ -37,16 +37,25 @@ public class Pessoa {
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum status = SimNaoEnum.S;
 	
-	@JsonIgnore
-	@Transient
+	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos;
-
-	@JsonIgnore
-	@OneToOne(optional = true)
+	
+	@Column(name = "TP_PESSOA", length = 1, nullable = false)
+	@Enumerated(EnumType.STRING)
+	private TipoPessoaEnum tipoPessoa;
+	
+	@Column(name = "TP_PESSOA_FISICA_JURIDICA", length = 1, nullable = false)
+	@Enumerated(EnumType.STRING)
+	private TipoPessoaFisicaJuridicaEnum tipoPessoaFisicaJuridica;
+	
+	@Column(name = "TX_EMAIL", nullable = false)
+	private String Email;
+	
+	@Transient
 	private Usuario usuario;
-		
+	
 	public Pessoa(String cpf, String nome) {
-		this.cpf = cpf;
+		this.cpfCnpj = cpf;
 		this.nome = nome;
 	}
 	
@@ -62,13 +71,13 @@ public class Pessoa {
 	}
 
 
-	public String getCpf() {
-		return cpf;
+	public String getCpfCnpj() {
+		return cpfCnpj;
 	}
 
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCpfCnpj(String cpfCnpj) {
+		this.cpfCnpj = cpfCnpj;
 	}
 
 
@@ -96,5 +105,48 @@ public class Pessoa {
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
+
+	public TipoPessoaEnum getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(TipoPessoaEnum tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public TipoPessoaFisicaJuridicaEnum getTipoPessoaFisicaJuridica() {
+		return tipoPessoaFisicaJuridica;
+	}
+
+	public void setTipoPessoaFisicaJuridica(TipoPessoaFisicaJuridicaEnum tipoPessoaFisicaJuridica) {
+		this.tipoPessoaFisicaJuridica = tipoPessoaFisicaJuridica;
+	}
+
+	public TipoPessoaFisicaJuridicaEnum retornaTipoFisicaJurida() {
+		return this.getCpfCnpj().length() == 11 ? TipoPessoaFisicaJuridicaEnum.F : TipoPessoaFisicaJuridicaEnum.J;
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
 	
+	public void insereTipoPessoa(TipoPessoaEnum tipoNovo) {
+		if(this.tipoPessoa == null) {
+			tipoPessoa = tipoNovo;
+		}else if(!this.tipoPessoa.equals(tipoNovo)){
+			this.tipoPessoa = TipoPessoaEnum.T;
+		}
+	}
 }

@@ -15,4 +15,6 @@ public interface IUsuarioService {
 
 	Usuario buscarPorPessoaId(Long idPessoa);
 
+	Usuario buscarPorLogin(String login);
+
 }
