@@ -47,7 +47,7 @@ public class Usuario {
 	
 	@Column(name = "DH_CRIACAO")
 	private LocalDateTime dataCriacao = LocalDateTime.now();
-	
+
 	@Column(name = "DH_INATIVACAO")
 	private LocalDateTime dataInativacao;
 	

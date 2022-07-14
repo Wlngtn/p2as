@@ -5,6 +5,7 @@ services:
   mysqlsrv:
     image: mysql:5.7
     ports:
+<<<<<<< HEAD
         - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "Ws2022!"
@@ -52,6 +53,33 @@ services:
 #     - mysqlsrv
 #   networks:
 #     - p2as-network
+=======
+        - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "Ws2022!"
+      MYSQL_DATABASE: "p2as_db"
+    networks:
+      - p2as-network
+    
+  namingserver:
+    image: wlngtn/p2as-naming-server:220711
+    ports:
+      - "8761:8761"
+    depends_on:
+      - mysqlsrv
+    networks:
+      - p2as-network
+
+  api:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8080:8080"  
+    depends_on:
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
+>>>>>>> 014d3c06344cd756db4b10ba5ffb113d40c6dce7
           
 networks: 
   p2as-network:
