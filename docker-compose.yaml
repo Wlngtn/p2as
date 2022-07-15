@@ -5,13 +5,13 @@ services:
   mysqlsrv:
     image: mysql:5.7
     ports:
-        - "3306:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "Ws2022!"
       MYSQL_DATABASE: "p2as_db"
     networks:
       - p2as-network
-    
+      
   namingserver:
     image: wlngtn/p2as-naming-server:220711
     ports:
@@ -62,8 +62,7 @@ services:
       - namingserver
       - mysqlsrv
     networks:
-      - p2as-network
-          
+      - p2as-network        
 networks: 
   p2as-network:
     driver: bridge
