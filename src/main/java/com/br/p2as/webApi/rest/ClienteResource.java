@@ -1,9 +1,9 @@
 package com.br.p2as.webApi.rest;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.p2as.exception.ErrorServiceException;
-import com.br.p2as.exception.PessoaExistsException;
 import com.br.p2as.exception.PessoaNotFoundException;
 import com.br.p2as.model.pessoa.Cliente;
 import com.br.p2as.service.IClienteService;
@@ -28,9 +25,9 @@ public class ClienteResource {
 	private IClienteService service;
 	
 	@GetMapping("/clientes")
-	public List<Cliente> getClientes() {
+	public ResponseEntity<Object> getClientes() {
 		List<Cliente> clientes = service.buscarTodos();
-		return clientes;
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(clientes);
 	}
 	
 	@GetMapping("/clientes/{id}")
@@ -44,22 +41,8 @@ public class ClienteResource {
 	
 	@PostMapping("/clientes")
 	public ResponseEntity<Object> addClientes(@RequestBody Cliente cliente) {
-		try {
-			cliente = service.criarCliente(cliente);
-			
-			URI location = ServletUriComponentsBuilder
-					.fromCurrentRequest()
-					.path("/{id}")
-					.buildAndExpand(cliente.getId())
-					.toUri();
-			
-			return ResponseEntity.created(location).build();
-			
-		}catch (PessoaExistsException pe) {
-			throw new PessoaExistsException(cliente.getPessoa().getCpfCnpj(), cliente.getPessoa().getNome());
-		} catch (Exception e) {
-			throw new ErrorServiceException();
-		}
+		cliente = service.criarCliente(cliente);
+		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
 	}
 	
 	@DeleteMapping("/clientes")

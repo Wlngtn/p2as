@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.br.p2as.exception.ServicoNotFoundException;
 import com.br.p2as.model.pessoa.Profissional;
 import com.br.p2as.model.profissional.Servico;
 import com.br.p2as.repository.ServicoRepository;
@@ -46,7 +47,10 @@ public class ServicoServiceImpl implements IServicoService{
 
 	public Servico buscarPorId(Long idServico) {
 		Optional<Servico> optServico = repository.findById(idServico);
-		return optServico.isPresent() ? optServico.get() : null ;
+		if(!optServico.isPresent()) {
+			new ServicoNotFoundException("Serviço não encontrado");
+		}
+		return optServico.get();
 	}
 
 }

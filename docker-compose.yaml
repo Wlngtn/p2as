@@ -5,7 +5,6 @@ services:
   mysqlsrv:
     image: mysql:5.7
     ports:
-<<<<<<< HEAD
         - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "Ws2022!"
@@ -31,55 +30,39 @@ services:
       - mysqlsrv
      networks:
        - p2as-network
-# 
-# apiCliente:
-#   image: wlngtn/p2as-api:220711
-#   ports:
-#     - "8080:8080"  
-#   depends_on:
-#     - apigateway
-#     - namingserver
-#     - mysqlsrv
-#   networks:
-#     - p2as-network
-#     
-# apiProfissional:
-#   image: wlngtn/p2as-api:220711
-#   ports:
-#     - "8081:8080"  
-#   depends_on:
-#     - apigateway
-#     - namingserver
-#     - mysqlsrv
-#   networks:
-#     - p2as-network
-=======
-        - "3307:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: "Ws2022!"
-      MYSQL_DATABASE: "p2as_db"
-    networks:
-      - p2as-network
-    
-  namingserver:
-    image: wlngtn/p2as-naming-server:220711
-    ports:
-      - "8761:8761"
-    depends_on:
-      - mysqlsrv
-    networks:
-      - p2as-network
-
-  api:
+  
+  apiCliente:
     image: wlngtn/p2as-api:220711
     ports:
       - "8080:8080"  
     depends_on:
+      - apigateway
       - namingserver
       - mysqlsrv
     networks:
       - p2as-network
->>>>>>> 014d3c06344cd756db4b10ba5ffb113d40c6dce7
+      
+  apiProfissional:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8081:8080"  
+    depends_on:
+      - apigateway
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
+      
+  apiLocalizacao:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8082:8080"  
+    depends_on:
+      - apigateway
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
           
 networks: 
   p2as-network:

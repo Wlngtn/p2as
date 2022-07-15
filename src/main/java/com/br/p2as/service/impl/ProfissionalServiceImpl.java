@@ -1,15 +1,19 @@
 package com.br.p2as.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.br.p2as.exception.ErrorServiceException;
 import com.br.p2as.exception.PessoaExistsException;
 import com.br.p2as.exception.ProfissionalExistsException;
+import com.br.p2as.exception.ServicoNotFoundException;
 import com.br.p2as.model.pessoa.Cliente;
 import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.model.pessoa.Profissional;
+import com.br.p2as.model.profissional.Servico;
 import com.br.p2as.repository.ProfissionalRepository;
 import com.br.p2as.service.IProfissionalService;
 import com.br.p2as.utils.enums.TipoPessoaEnum;
@@ -29,14 +33,25 @@ public class ProfissionalServiceImpl implements IProfissionalService{
 	}
 
 	@Override
-	public Profissional buscarPorId(Long id) {
-		Profissional profissional = repository.getById(id);
-		return profissional;
+	public Profissional buscarPorId(Long idProfissional) {
+		Optional<Profissional> optProfissional = repository.findById(idProfissional);
+		if(!optProfissional.isPresent()) {
+			new ServicoNotFoundException("Serviço não encontrado");
+		}
+		return optProfissional.get();
 	}
 
 	@Override
 	public void excluirProfissional(Profissional profissional) {
-		repository.deleteById(profissional.getId());		
+		Optional<Profissional> optProfissional = repository.findById(profissional.getId());
+		if(!optProfissional.isPresent()) {
+			new ServicoNotFoundException("Serviço não encontrado");
+		}
+		try {
+			repository.deleteById(optProfissional.get().getId());		
+		}catch(Exception e){
+			throw new ErrorServiceException();
+		}
 	}
 
 	@Override

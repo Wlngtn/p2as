@@ -5,15 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.br.p2as.exception.EnderecoNotFoundException;
 import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.model.pessoa.Pessoa;
+import com.br.p2as.model.pessoa.Profissional;
 import com.br.p2as.repository.EnderecoRepository;
 import com.br.p2as.service.IEnderecoService;
+import com.br.p2as.service.IProfissionalService;
 
 @Component
 public class EnderecoServiceImpl implements IEnderecoService{
 	@Autowired
 	private EnderecoRepository repository;
+	
+	@Autowired
+	private IProfissionalService profissionalService;
 	
 	@Override
 	public List<Endereco> buscarEnderecosPessoa(Pessoa pessoa) {
@@ -68,6 +74,17 @@ public class EnderecoServiceImpl implements IEnderecoService{
 	@Override
 	public void excluirEndereco(Long idPessoa, Endereco endereco) {
 		repository.deleteByIdPessoaId(idPessoa, endereco.getId());
+	}
+
+	@Override
+	public Endereco buscarEnderecoProfissional(Long idProfissional) {
+		Profissional profissional = profissionalService.buscarPorId(idProfissional);
+		
+		if(profissional.getPessoa().getEnderecos().isEmpty()) {
+			throw new EnderecoNotFoundException("Profissional não possui endereço cadastrado");
+		}
+		
+		return profissional.getPessoa().getEnderecos().get(0);
 	}
 
 }
