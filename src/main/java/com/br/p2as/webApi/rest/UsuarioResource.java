@@ -3,6 +3,7 @@ package com.br.p2as.webApi.rest;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,46 +40,8 @@ public class UsuarioResource {
 	
 	@PostMapping("/pessoas/{idPessoa}/usuarios")
 	public ResponseEntity<Object> addUsuarios(@PathVariable(value="idPessoa") long idPessoa, @RequestBody Usuario usuario) {
-		validarUsuario(Long.valueOf(idPessoa), usuario);
-		
-		try {
-			
-			usuario = service.criarUsuario(Long.valueOf(idPessoa), usuario);
-			
-			URI location = ServletUriComponentsBuilder
-					.fromCurrentRequest()
-					.path("/{id}")
-					.buildAndExpand(usuario.getId())
-					.toUri();
-			
-			return ResponseEntity.created(location).build();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	private void validarUsuario(Long idPessoa, Usuario usuario) {
-		validarUsuarioParaPessoa(idPessoa, usuario);		
-	}
-
-	private void validarUsuarioParaPessoa(Long idPessoa, Usuario usuario) {
-		Usuario usuarioBusca = service.buscarPorPessoaId(idPessoa);
-		
-		if(usuarioBusca != null) {
-			throw new UsuarioPessoaExistsException("Usuario já cadastrado para o C.P.F./C.N.P.J. " + usuarioBusca.getPessoa().getCpfCnpj());
-		}
-		
-		validarUsuarioPorLogin(usuario);
-	}
-	
-	private void validarUsuarioPorLogin(Usuario usuario) {
-		Usuario usuarioBusca = service.buscarPorLogin(usuario.getLogin());
-		
-		if(usuarioBusca != null) {
-			throw new UsuarioPessoaExistsException("Login " + usuarioBusca.getLogin() + " já cadastrado");
-		}
+		usuario = service.criarUsuario(Long.valueOf(idPessoa), usuario);
+		return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
 	}
 
 	@DeleteMapping("/pessoas/{idPessoa}/usuarios/{id}")

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.br.p2as.model.pessoa.Profissional;
 import com.br.p2as.utils.enums.SimNaoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TB_005_LOCALIZACAO_ATUAL")
@@ -40,12 +41,12 @@ public class LocalAtual {
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum ativo = SimNaoEnum.S;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="ID_PROFISSIONAL")
 	private Profissional profissional;
 
 	public LocalAtual(String longitude, String latitude) {
-		super();
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
@@ -100,6 +101,19 @@ public class LocalAtual {
 
 	public void setAtivo(SimNaoEnum ativo) {
 		this.ativo = ativo;
+	}
+
+	public Profissional getProfissional() {
+		return profissional;
+	}
+
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
+	}
+
+	public void inativar() {
+		this.ativo = SimNaoEnum.N;
+		this.dataFim = LocalDateTime.now();
 	}
 	
 }
