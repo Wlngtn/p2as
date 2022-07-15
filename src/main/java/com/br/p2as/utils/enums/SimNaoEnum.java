@@ -26,6 +26,9 @@ public enum SimNaoEnum {
 	public void setValor(Boolean valor) {
 		this.valor = valor;
 	}
-	
-	
+
+	public boolean getIsAtivo() {
+		return this.getValor();
+	}
+
 }

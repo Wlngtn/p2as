@@ -20,4 +20,13 @@ public interface IEnderecoService {
 
 	List<Endereco> buscarEnderecosPessoa(Pessoa pessoa);
 
+	List<Endereco> buscarTodos(Long idPessoa);
+
+	Endereco criarEndereco(Long idPessoa, Endereco endereco);
+
+	void excluirEndereco(Long idPessoa, Endereco endereco);
+
+	Endereco buscarPorIdPessoaId(Long idPessoa, Long id);
+
+	Endereco buscarEnderecoProfissional(Long idProfissional);
 }

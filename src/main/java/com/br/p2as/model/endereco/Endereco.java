@@ -20,6 +20,7 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonIgnore
 	@OneToOne
 	private Pessoa pessoa;
 
@@ -41,6 +42,9 @@ public class Endereco {
 	@Column(name = "TX_UF", nullable = false, length = 2)
 	private String uf;
 	
+	@Column(name = "TX_BRASIL", nullable = false)
+	private String pais;
+
 	@Column(name = "TX_STATUS", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum status = SimNaoEnum.S;
@@ -115,6 +119,14 @@ public class Endereco {
 
 	public void setStatus(SimNaoEnum status) {
 		this.status = status;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
 	}
 	
 }

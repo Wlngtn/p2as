@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "8e6b2852-354e-4e45-a69b-ff039e60529b",
+		"name": "Usuário",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19246370"
+	},
+	"item": [
+		{
+			"name": "Criar Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\":\"teste\",\r\n    \"senha\":\"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/pessoa/1/usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Usuario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/pessoa/1/usuarios/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Usuario Por Pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/pessoa/1/usuarios/1"
+			},
+			"response": []
+		}
+	]
+}

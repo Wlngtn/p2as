@@ -14,9 +14,10 @@ import javax.persistence.Table;
 
 import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.utils.enums.SimNaoEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="TB_002_USUARIO")
+@Table(name="TB_004_USUARIO")
 public class Usuario {
 	
 	@Id
@@ -29,9 +30,11 @@ public class Usuario {
 	@Column(name = "TX_SENHA", nullable = false)
 	private String senha;
 	
+	@JsonIgnore
 	@Column(name = "TX_TENANT_ID")
 	private String tenantId;
 	
+	@JsonIgnore
 	@Column(name = "TX_TENANT_SECRET")
 	private String tenantSecret;
 	
@@ -42,10 +45,10 @@ public class Usuario {
 	private String clientSecret;
 	
 	@Column(name = "DH_CRIACAO")
-	private LocalDateTime dataCriacao;
-	
+	private LocalDateTime dataCriacao = LocalDateTime.now();
+
 	@Column(name = "DH_INATIVACAO")
-	private LocalDateTime datainatvacao;
+	private LocalDateTime dataInativacao;
 	
 	@Column(name = "TX_STATUS", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
@@ -118,12 +121,12 @@ public class Usuario {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public LocalDateTime getDatainatvacao() {
-		return datainatvacao;
+	public LocalDateTime getDataInativacao() {
+		return dataInativacao;
 	}
 
-	public void setDatainatvacao(LocalDateTime datainatvacao) {
-		this.datainatvacao = datainatvacao;
+	public void setDataInativacao(LocalDateTime dataInativacao) {
+		this.dataInativacao = dataInativacao;
 	}
 
 	public SimNaoEnum getStatus() {
