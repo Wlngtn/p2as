@@ -33,7 +33,6 @@ public class UsuarioServiceImpl implements IUsuarioService{
 
 	@Override
 	public Usuario criarUsuario(Long idPessoa, Usuario usuario) {
-		
 		validarUsuario(Long.valueOf(idPessoa), usuario);
 		
 		usuario.setPessoa(pessoaService.buscarPorId(idPessoa));

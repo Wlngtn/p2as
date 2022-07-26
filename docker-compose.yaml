@@ -5,7 +5,7 @@ services:
   mysqlsrv:
     image: mysql:5.7
     ports:
-        - "3306:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: "Ws2022!"
       MYSQL_DATABASE: "p2as_db"
@@ -46,7 +46,7 @@ services:
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
       SPRING.DATASOUCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
-          
+
 networks: 
   p2as-network:
     driver: bridge
