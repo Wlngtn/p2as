@@ -41,7 +41,7 @@
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/profissionais/1/servicos/1"
+				"url": "{{URL_BASIC}}/profissionais/1/servicos/1/comunicacoes/1"
 			},
 			"response": []
 		}

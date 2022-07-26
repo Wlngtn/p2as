@@ -26,7 +26,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"pessoa\":{\r\n        \"nome\":\"Joao\",\r\n        \"cpfCnpj\":\"11111111111\",\r\n        \"email\": \"teste@teste.com\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"pessoa\":{\r\n        \"nome\":\"Maria\",\r\n        \"cpfCnpj\":\"11111111112\",\r\n        \"email\": \"teste@teste.com\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -67,7 +67,7 @@
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/pessoas/1/usuarios"
+				"url": "{{URL_BASIC}}/pessoas/2/usuarios"
 			},
 			"response": []
 		},
@@ -94,14 +94,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cep\":\"30840320\",\r\n    \"logradouro\":\"Maria Pereira de Araújo\",\r\n    \"numero\":\"15\",\r\n    \"complemento\":\"apto 602 bl 01\",\r\n    \"cidade\": \"Belo Horizonte\",\r\n    \"uf\":\"MG\",\r\n    \"pais\":\"Brasil\"\r\n}",
+					"raw": "{\r\n    \"cep\":\"20031921\",\r\n    \"logradouro\":\"Av. treze de maio\",\r\n    \"numero\":\"47\",\r\n    \"complemento\":\"\",\r\n    \"cidade\": \"Rio de Janeiro\",\r\n    \"uf\":\"RJ\",\r\n    \"pais\":\"Brasil\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/pessoa/1/enderecos"
+				"url": "{{URL_BASIC}}/pessoa/2/enderecos"
 			},
 			"response": []
 		},
@@ -110,7 +110,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{URL_BASIC}}/pessoa/4/enderecos/"
+				"url": "{{URL_BASIC}}/pessoa/2/enderecos/"
 			},
 			"response": []
 		},
@@ -119,7 +119,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{URL_BASIC}}/pessoa/2/enderecos/1"
+				"url": "{{URL_BASIC}}/pessoa/2/enderecos/2"
 			},
 			"response": []
 		}

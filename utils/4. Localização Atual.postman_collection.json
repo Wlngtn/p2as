@@ -20,7 +20,7 @@
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/profissionais/1/locaisatual"
+				"url": "{{URL_BASIC}}/profissionais/1/localizacao"
 			},
 			"response": []
 		},
@@ -38,7 +38,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{URL_BASIC}}/profissionais/1/locaisatual/ativo"
+				"url": "{{URL_BASIC}}/profissionais/1/localizacao/ativo"
 			},
 			"response": []
 		},
@@ -47,7 +47,7 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"url": "{{URL_BASIC}}/profissionais/1/locaisatual/1/inativar"
+				"url": "{{URL_BASIC}}/profissionais/1/localizacao/1/inativar"
 			},
 			"response": []
 		},

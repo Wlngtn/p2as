@@ -62,6 +62,27 @@
 				"url": "{{URL_BASIC}}/pessoas/1/comunicacoes/1/servicos/1/mensagens"
 			},
 			"response": []
+		},
+		{
+			"name": "1. buscar Mensagens de Servico Profissional",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"texto\": \"Boa Noite!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoas/2/comunicacoes/1/servicos/1/mensagens"
+			},
+			"response": []
 		}
 	]
 }

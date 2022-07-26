@@ -71,14 +71,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\":\"teste\",\r\n    \"senha\":\"teste\"\r\n}",
+					"raw": "{\r\n    \"login\":\"teste1\",\r\n    \"senha\":\"teste\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/pessoas/4/usuarios"
+				"url": "{{URL_BASIC}}/pessoas/1/usuarios"
 			},
 			"response": []
 		},
@@ -99,7 +99,7 @@
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/pessoas/4/usuarios/"
+				"url": "{{URL_BASIC}}/pessoas/1/usuarios/"
 			},
 			"response": []
 		},
@@ -110,14 +110,14 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cep\":\"30840320\",\r\n    \"logradouro\":\"Maria Pereira de Araújo\",\r\n    \"numero\":\"15\",\r\n    \"complemento\":\"apto 602 bl 01\",\r\n    \"cidade\": \"Belo Horizonte\",\r\n    \"uf\":\"MG\",\r\n    \"pais\":\"Brasil\"\r\n}",
+					"raw": "{\r\n    \"cep\":\"30840320\",\r\n    \"logradouro\":\"Maria Pereira de Araújo\",\r\n    \"numero\":\"15\",\r\n    \"complemento\":\"apto 123\",\r\n    \"cidade\": \"Belo Horizonte\",\r\n    \"uf\":\"MG\",\r\n    \"pais\":\"Brasil\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "{{URL_BASIC}}/pessoa/4/enderecos"
+				"url": "{{URL_BASIC}}/pessoa/1/enderecos"
 			},
 			"response": []
 		},
@@ -135,7 +135,7 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "{{URL_BASIC}}/pessoa/4/enderecos/1"
+				"url": "{{URL_BASIC}}/pessoa/1/enderecos/1"
 			},
 			"response": []
 		}
