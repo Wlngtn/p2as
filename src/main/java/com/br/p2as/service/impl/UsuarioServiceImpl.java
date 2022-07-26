@@ -18,7 +18,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	
 	@Autowired
 	private IPessoaService pessoaService;
-	
+
 	@Override
 	public Usuario buscarPorPessoaId(Long idPessoa) {
 		Usuario usuario = repository.getByPessoaId(idPessoa);
@@ -61,7 +61,7 @@ public class UsuarioServiceImpl implements IUsuarioService{
 			throw new UsuarioPessoaExistsException("Login " + usuarioBusca.getLogin() + " já cadastrado");
 		}
 	}
-	
+
 	@Override
 	public void excluirUsuario(Long idPessoa, Long id) {
 		repository.deleteByIdPessoaId(idPessoa, id);
@@ -71,7 +71,6 @@ public class UsuarioServiceImpl implements IUsuarioService{
 	public Usuario buscarPorLogin(String login) {
 		Usuario usuario = repository.getByLogin(login);
 		return usuario;
-	}
-	
+	}	
 
 }

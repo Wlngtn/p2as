@@ -19,4 +19,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
 		@Query("from Usuario where login = ?1")
 		public Usuario getByLogin(String login);
+
 }

@@ -37,7 +37,7 @@ public class Pessoa {
 	@Column(name = "TX_STATUS", length = 1, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum status = SimNaoEnum.S;
-	
+
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos;
 	
