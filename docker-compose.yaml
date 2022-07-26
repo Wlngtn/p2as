@@ -11,7 +11,7 @@ services:
       MYSQL_DATABASE: "p2as_db"
     networks:
       - p2as-network
-
+      
   namingserver:
     image: wlngtn/p2as-naming-server:220711
     ports:
@@ -36,7 +36,7 @@ services:
   apiCliente:
     image: wlngtn/p2as-api:220711
     ports:
-      - "8080:8080"  
+      - "8082:8080"  
     depends_on:
       - apigateway
       - namingserver

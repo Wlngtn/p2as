@@ -81,6 +81,5 @@ public class EnderecoResource {
 		}
 		
 		service.excluirEndereco(Long.valueOf(idPessoa), endereco);
-
 	}
 }

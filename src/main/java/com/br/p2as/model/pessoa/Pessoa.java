@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -69,7 +70,6 @@ public class Pessoa {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getCpfCnpj() {
 		return cpfCnpj;
@@ -149,4 +149,5 @@ public class Pessoa {
 			this.tipoPessoa = TipoPessoaEnum.T;
 		}
 	}
+
 }

@@ -13,8 +13,6 @@ import javax.persistence.Table;
 import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.utils.enums.SimNaoEnum;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name="TB_003_ENDERECO")
 public class Endereco {
@@ -22,7 +20,6 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-
 	@JsonIgnore
 	@OneToOne
 	private Pessoa pessoa;

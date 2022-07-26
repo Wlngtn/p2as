@@ -20,7 +20,7 @@ public class EnderecoServiceImpl implements IEnderecoService{
 	
 	@Autowired
 	private IProfissionalService profissionalService;
-	
+
 	@Override
 	public List<Endereco> buscarEnderecosPessoa(Pessoa pessoa) {
 		List<Endereco> enderecos = repository.findAllByPessoa(pessoa);
