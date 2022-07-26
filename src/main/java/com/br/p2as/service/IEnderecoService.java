@@ -29,4 +29,5 @@ public interface IEnderecoService {
 	Endereco buscarPorIdPessoaId(Long idPessoa, Long id);
 
 	Endereco buscarEnderecoProfissional(Long idProfissional);
+
 }

@@ -3,6 +3,9 @@ package com.br.p2as.webApi.rest;
 
 import java.util.List;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -20,6 +23,7 @@ import com.br.p2as.model.pessoa.Cliente;
 import com.br.p2as.service.IClienteService;
 
 @RestController
+@Produces(MediaType.APPLICATION_JSON)
 @RequestMapping(value="/v1/api")
 public class ClienteResource {
 	
