@@ -43,35 +43,4 @@ public class PessoaResource {
 		}
 		return pessoa;
 	}
-	
-	@PostMapping("/pessoas")
-	public ResponseEntity<Object> addPessoas(@RequestBody Pessoa pessoa) {
-		try {
-			pessoa = service.criarPessoa(pessoa);
-			
-			URI location = ServletUriComponentsBuilder
-					.fromCurrentRequest()
-					.path("/{id}")
-					.buildAndExpand(pessoa.getId())
-					.toUri();
-			
-			return ResponseEntity.created(location).build();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	@DeleteMapping("/pessoas")
-	public void deletePessoas(@RequestBody Pessoa pessoa) {
-		
-		Pessoa pessoaBusca = service.buscarPorId(pessoa.getId());
-		
-		if(pessoaBusca == null) {
-			throw new PessoaNotFoundException("id - " + pessoa.getId());
-		}
-		
-		service.excluirPessoa(pessoaBusca);
-	}
 }

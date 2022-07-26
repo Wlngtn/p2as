@@ -22,7 +22,6 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-
 	@JsonIgnore
 	@OneToOne
 	private Pessoa pessoa;
