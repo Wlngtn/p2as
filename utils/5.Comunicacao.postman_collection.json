@@ -1,33 +1,36 @@
 {
 	"info": {
-		"_postman_id": "8e6b2852-354e-4e45-a69b-ff039e60529b",
-		"name": "Usuário",
+		"_postman_id": "b5aafb8e-7fae-4c2a-be6e-0f64ab99fc2a",
+		"name": "5.Comunicacao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "19246370"
 	},
 	"item": [
 		{
-			"name": "Criar Usuario",
+			"name": "1. CriarComunicações",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\":\"teste\",\r\n    \"senha\":\"teste\"\r\n}",
+					"raw": "{\r\n    \"id\": \"1\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/pessoa/1/usuarios"
+				"url": "{{URL_BASIC}}/profissionais/1/servicos/1/comunicacoes"
 			},
 			"response": []
 		},
 		{
-			"name": "Excluir Usuario",
+			"name": "2. Buscar Comunicação",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -38,16 +41,7 @@
 						}
 					}
 				},
-				"url": "http://localhost:8080/api/pessoa/1/usuarios/1"
-			},
-			"response": []
-		},
-		{
-			"name": "Buscar Usuario Por Pessoa",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": "http://localhost:8080/api/pessoa/1/usuarios/1"
+				"url": "{{URL_BASIC}}/profissionais/1/servicos/1"
 			},
 			"response": []
 		}

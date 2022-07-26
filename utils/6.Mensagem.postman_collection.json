@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "15c13c2d-ca6e-44ef-a9f4-ff2a027d2919",
+		"name": "6.Mensagem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19246370"
+	},
+	"item": [
+		{
+			"name": "1. Enviar Mensagem Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"texto\": \"Tenho uma dúvida\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoas/1/comunicacoes/1/servicos/1/mensagens"
+			},
+			"response": []
+		},
+		{
+			"name": "1. Enviar Mensagem Profissional",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"texto\": \"Já vou te responder\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoas/2/comunicacoes/1/servicos/1/mensagens"
+			},
+			"response": []
+		},
+		{
+			"name": "1. buscar Mensagens de Servico",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"texto\": \"Boa Noite!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoas/1/comunicacoes/1/servicos/1/mensagens"
+			},
+			"response": []
+		}
+	]
+}

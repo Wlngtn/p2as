@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "6dfd8ffe-db03-48e4-a855-daffb5048bd8",
+		"name": "1. Clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19246370"
+	},
+	"item": [
+		{
+			"name": "1. Criar Clientes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "646e3f20-d107-4763-8a6a-d554dc83d74b",
+						"username": "user"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pessoa\":{\r\n        \"nome\":\"José\",\r\n        \"cpfCnpj\":\"11111111111\",\r\n        \"email\": \"teste2@teste.com\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/clientes"
+			},
+			"response": []
+		},
+		{
+			"name": "2. Buscar Clientes",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "646e3f20-d107-4763-8a6a-d554dc83d74b",
+						"username": "user"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{URL_BASIC}}/clientes"
+			},
+			"response": []
+		},
+		{
+			"name": "3. Criar Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\":\"teste\",\r\n    \"senha\":\"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoas/4/usuarios"
+			},
+			"response": []
+		},
+		{
+			"name": "4. buscar Usuario de pessoa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\":\"teste\",\r\n    \"senha\":\"teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoas/4/usuarios/"
+			},
+			"response": []
+		},
+		{
+			"name": "5. Criar Endereco para Pessoa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cep\":\"30840320\",\r\n    \"logradouro\":\"Maria Pereira de Araújo\",\r\n    \"numero\":\"15\",\r\n    \"complemento\":\"apto 602 bl 01\",\r\n    \"cidade\": \"Belo Horizonte\",\r\n    \"uf\":\"MG\",\r\n    \"pais\":\"Brasil\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL_BASIC}}/pessoa/4/enderecos"
+			},
+			"response": []
+		},
+		{
+			"name": "6. Buscar Endereços de pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL_BASIC}}/pessoa/1/enderecos/"
+			},
+			"response": []
+		},
+		{
+			"name": "7. buscar por id Endereco de pessoa",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL_BASIC}}/pessoa/4/enderecos/1"
+			},
+			"response": []
+		}
+	]
+}
