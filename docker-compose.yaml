@@ -36,6 +36,34 @@ services:
   apiCliente:
     image: wlngtn/p2as-api:220711
     ports:
+      - "8080:8080"  
+    depends_on:
+      - apigateway
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
+      SPRING.DATASOUCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+      
+  apiProfissional:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8081:8080"  
+    depends_on:
+      - apigateway
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
+      SPRING.DATASOUCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+            
+  apiServico:
+    image: wlngtn/p2as-api:220711
+    ports:
       - "8082:8080"  
     depends_on:
       - apigateway
@@ -46,7 +74,35 @@ services:
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
       SPRING.DATASOUCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
-          
+      
+  apiComunicacao:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8083:8080"  
+    depends_on:
+      - apigateway
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
+      SPRING.DATASOUCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC 
+      
+  apiLocalizacao:
+    image: wlngtn/p2as-api:220711
+    ports:
+      - "8084:8080"  
+    depends_on:
+      - apigateway
+      - namingserver
+      - mysqlsrv
+    networks:
+      - p2as-network
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
+      SPRING.DATASOUCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+ 
 networks: 
   p2as-network:
     driver: bridge
