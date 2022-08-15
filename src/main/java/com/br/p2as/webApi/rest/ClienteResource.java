@@ -48,6 +48,7 @@ public class ClienteResource {
 	@PostMapping("/clientes")
 	public ResponseEntity<Object> addClientes(@RequestBody Cliente cliente) {
 		cliente = service.criarCliente(cliente);
+		System.out.println("Cliente " + cliente.getId() + " - " + cliente.getPessoa().getNome() + " - " + "criado");
 		return ResponseEntity.status(HttpStatus.CREATED).body(cliente);
 	}
 	

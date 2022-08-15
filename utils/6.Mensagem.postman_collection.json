@@ -43,7 +43,7 @@
 			"response": []
 		},
 		{
-			"name": "1. buscar Mensagens de Servico",
+			"name": "1. buscar Mensagens de Servico Cliente",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},

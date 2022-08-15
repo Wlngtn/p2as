@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.p2sa</groupId>
-	<artifactId>p2sa</artifactId>
+	<artifactId>p2as-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>p2sa</name>
+	<name>p2as-api</name>
 	<description>Projeto Conclusao </description>
 	<properties>
 		<java.version>17</java.version>

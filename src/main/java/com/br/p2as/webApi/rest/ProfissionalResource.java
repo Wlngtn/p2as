@@ -46,6 +46,8 @@ public class ProfissionalResource {
 		try {
 			profissional = service.criarProfissional(profissional);
 			
+			System.out.println("Profissional " + profissional.getId() + " - " + profissional.getPessoa().getNome() + " - " + "criado");
+			
 			URI location = ServletUriComponentsBuilder
 					.fromCurrentRequest()
 					.path("/{id}")
