@@ -33,51 +33,51 @@ services:
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
  
-# apiCliente:
-#   image: wlngtn/p2as-api:230225
-#   ports:
-#     - "8081:8080"  
-#   depends_on:
-#     - apigateway
-#     - namingserver
-#     - mysqlsrv
-#   networks:
-#     - p2as-network
-#   environment:
-#     EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
-#     SPRING.DATASOURCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
-#   build:
-#     context: ./
-#     dockerfile: Dockerfile
-#   restart: unless-stopped
-#   healthcheck:
-#     test: curl --fail http://localhost:8765/p2as-api/v1/api/clientes || exit 1
-#     interval: 60s
-#     retries: 5
-#     start_period: 20s
-#     timeout: 10s
-#     
-# apiProfissional:
-#   image: wlngtn/p2as-api:230225
-#   ports:
-#     - "8082:8080"  
-#   depends_on:
-#     - apiCliente
-#     - apigateway
-#     - namingserver
-#     - mysqlsrv
-#   networks:
-#     - p2as-network
-#   environment:
-#     EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
-#     SPRING.DATASOURCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
-#   healthcheck:
-#     test: curl --fail http://localhost:8765/p2as-api/v1/api/profissionais || exit 1
-#     interval: 60s
-#     retries: 5
-#     start_period: 20s
-#     timeout: 10s   
-#     
+ apiCliente:
+   image: wlngtn/p2as-api:230225
+   ports:
+     - "8081:8080"  
+   depends_on:
+     - apigateway
+     - namingserver
+     - mysqlsrv
+   networks:
+     - p2as-network
+   environment:
+     EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
+     SPRING.DATASOURCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+   build:
+     context: ./
+     dockerfile: Dockerfile
+   restart: unless-stopped
+   healthcheck:
+     test: curl --fail http://localhost:8765/p2as-api/v1/api/clientes || exit 1
+     interval: 60s
+     retries: 5
+     start_period: 20s
+     timeout: 10s
+     
+ apiProfissional:
+   image: wlngtn/p2as-api:230225
+   ports:
+     - "8082:8080"  
+   depends_on:
+     - apiCliente
+     - apigateway
+     - namingserver
+     - mysqlsrv
+   networks:
+     - p2as-network
+   environment:
+     EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
+     SPRING.DATASOURCE.URL: jdbc:mysql://mysqlsrv:3306/p2as_db?createDatabaseIfNotExist=true&serverTimezone=UTC
+   healthcheck:
+     test: curl --fail http://localhost:8765/p2as-api/v1/api/profissionais || exit 1
+     interval: 60s
+     retries: 5
+     start_period: 20s
+     timeout: 10s   
+     
 # p2asFront:
 #   image: wlngtn/p2as-front:latest
 #   ports:
