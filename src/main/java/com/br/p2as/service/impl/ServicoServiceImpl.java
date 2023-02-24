@@ -1,5 +1,6 @@
 package com.br.p2as.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import com.br.p2as.exception.ServicoNotFoundException;
 import com.br.p2as.model.pessoa.Profissional;
 import com.br.p2as.model.profissional.Servico;
+import com.br.p2as.model.profissional.to.ServicoTO;
 import com.br.p2as.repository.ServicoRepository;
 import com.br.p2as.service.IServicoService;
 
@@ -56,14 +58,35 @@ public class ServicoServiceImpl implements IServicoService{
 
 	@CrossOrigin
 	@Override
-	public List<Servico> getAll() {
-		return repository.findAll();
+	public List<ServicoTO> getAll() {
+		List<ServicoTO> servicosTO = new ArrayList<ServicoTO>();
+		for(Servico servico : repository.buscaOrdenadoAtivoNota()) {
+			servicosTO.add(new ServicoTO(servico));
+		}
+		
+		return servicosTO;
 	}
 
 	@Override
 	public Servico getById(long id) {
 		 Optional<Servico> servicoOpt = repository.findById(id);
 		 return servicoOpt.isPresent() ? servicoOpt.get() : null;
+	}
+
+	@Override
+	public List<ServicoTO> buscaPorNomeDescricao(String texto) {
+		List<Servico> servicos = repository.getServicosByNomeEDescricaoEProfissional(texto);
+		List<ServicoTO> servicosTO = new ArrayList<ServicoTO>();
+		
+		if(servicos == null) {
+			return servicosTO;
+		}
+		
+		for(Servico servico : servicos) {
+			servicosTO.add(new ServicoTO(servico));
+		}
+		
+		return servicosTO;
 	}
 
 }

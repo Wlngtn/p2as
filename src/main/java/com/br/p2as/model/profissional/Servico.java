@@ -1,5 +1,8 @@
 package com.br.p2as.model.profissional;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,13 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.model.pessoa.Profissional;
 import com.br.p2as.utils.enums.SimNaoEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="TB_006_SERVICO")
@@ -26,6 +28,7 @@ public class Servico {
 	
 	@Column(name = "TX_CODIGO", nullable = false, length = 6, unique = true, updatable = false)
 	private String codigo;
+	
 	@Column(name = "TX_NOME", nullable = false, length = 100)
 	private String nome;
 	
@@ -43,6 +46,12 @@ public class Servico {
 	@OneToOne
 	@JoinColumn(name = "ID_PROFISSIONAL")
 	private Profissional profissional;
+	
+	@Column(name = "NU_NOTA")
+	private BigDecimal nota;
+	
+	@OneToMany(mappedBy = "servico")
+	private List<Nota> notas;
 	
 	public Servico(String nome, String descricao, Profissional profissional) {
 		super();
@@ -107,6 +116,22 @@ public class Servico {
 
 	public void setProfissional(Profissional profissional) {
 		this.profissional = profissional;
+	}
+
+	public BigDecimal getNota() {
+		return nota;
+	}
+
+	public void setNota(BigDecimal nota) {
+		this.nota = nota;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 	
 }
