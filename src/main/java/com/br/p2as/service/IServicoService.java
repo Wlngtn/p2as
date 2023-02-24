@@ -13,5 +13,9 @@ public interface IServicoService {
 	Servico buscarPorIdProfissionalId(Long idProfissional, Long id);
 
 	Servico criarServico(Servico servico, Long idProfissional) throws Exception;
+	
+	List<Servico> getAll();
+
+	Servico getById(long id);
 
 }

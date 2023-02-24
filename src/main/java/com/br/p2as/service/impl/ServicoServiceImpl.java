@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.br.p2as.exception.ServicoNotFoundException;
 import com.br.p2as.model.pessoa.Profissional;
@@ -51,6 +52,18 @@ public class ServicoServiceImpl implements IServicoService{
 			new ServicoNotFoundException("Serviço não encontrado");
 		}
 		return optServico.get();
+	}
+
+	@CrossOrigin
+	@Override
+	public List<Servico> getAll() {
+		return repository.findAll();
+	}
+
+	@Override
+	public Servico getById(long id) {
+		 Optional<Servico> servicoOpt = repository.findById(id);
+		 return servicoOpt.isPresent() ? servicoOpt.get() : null;
 	}
 
 }

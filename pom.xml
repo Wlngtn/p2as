@@ -105,7 +105,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>wlngtn/p2as-api:220711</name>
+						<name>wlngtn/p2as-api:230223</name>
 					</image>
 					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
 				</configuration>

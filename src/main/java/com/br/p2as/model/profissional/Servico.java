@@ -40,7 +40,6 @@ public class Servico {
 	@Enumerated(EnumType.STRING)
 	private SimNaoEnum emAtendimento = SimNaoEnum.N;
 	
-	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "ID_PROFISSIONAL")
 	private Profissional profissional;
