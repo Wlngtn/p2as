@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.br.p2as.exception.PessoaExistsException;
 import com.br.p2as.exception.PessoaNotFoundException;
 import com.br.p2as.model.pessoa.Profissional;
+import com.br.p2as.model.pessoa.to.ProfissionalTO;
 import com.br.p2as.service.IProfissionalService;
 
 @RestController
@@ -41,6 +42,16 @@ public class ProfissionalResource {
 			throw new PessoaNotFoundException("id - " + id);
 		}
 		return profissional;
+	}
+	
+	@CrossOrigin
+	@GetMapping("/profissionais/cpf/{cpf}")
+	public ProfissionalTO getProfissionalCPF(@PathVariable(value="cpf") String cpf) {
+		ProfissionalTO profissionalTO = service.buscarPorCpf(cpf);
+		if(profissionalTO == null) {
+			throw new PessoaNotFoundException("cpf - " + cpf);
+		}
+		return profissionalTO;
 	}
 	
 	@PostMapping("/profissionais")

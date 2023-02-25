@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.br.p2as.exception.ErrorServiceException;
-import com.br.p2as.exception.PessoaExistsException;
 import com.br.p2as.exception.ProfissionalExistsException;
+import com.br.p2as.exception.ProfissionalNotFoundException;
 import com.br.p2as.exception.ServicoNotFoundException;
-import com.br.p2as.model.pessoa.Cliente;
 import com.br.p2as.model.pessoa.Pessoa;
 import com.br.p2as.model.pessoa.Profissional;
-import com.br.p2as.model.profissional.Servico;
+import com.br.p2as.model.pessoa.to.ProfissionalTO;
 import com.br.p2as.repository.ProfissionalRepository;
 import com.br.p2as.service.IProfissionalService;
 import com.br.p2as.utils.enums.TipoPessoaEnum;
@@ -77,6 +76,15 @@ public class ProfissionalServiceImpl implements IProfissionalService{
 		}
 			
 		return Boolean.FALSE;
+	}
+
+	@Override
+	public ProfissionalTO buscarPorCpf(String cpf) {
+		Optional<Profissional> optProfissional = repository.findByCPF(cpf);
+		if(!optProfissional.isPresent()) {
+			new ProfissionalNotFoundException("Profissional não encontrado");
+		}
+		return new ProfissionalTO(optProfissional.get());
 	}
 
 }

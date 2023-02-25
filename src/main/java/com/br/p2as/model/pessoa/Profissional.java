@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import com.br.p2as.model.profissional.LocalAtual;
 import com.br.p2as.model.profissional.Servico;
-import com.br.p2as.model.usuario.Usuario;
 
 @Entity
 @Table(name="TB_002_PROFISSIONAL")
