@@ -50,7 +50,7 @@ public class Pessoa {
 	private TipoPessoaFisicaJuridicaEnum tipoPessoaFisicaJuridica;
 	
 	@Column(name = "TX_EMAIL", nullable = false)
-	private String Email;
+	private String email;
 	
 	@Transient
 	private Usuario usuario;
@@ -130,16 +130,16 @@ public class Pessoa {
 		this.tipoPessoaFisicaJuridica = tipoPessoaFisicaJuridica;
 	}
 
-	public TipoPessoaFisicaJuridicaEnum retornaTipoFisicaJurida() {
+	public TipoPessoaFisicaJuridicaEnum retornaTipoFisicaJuridica() {
 		return this.getCpfCnpj().length() == 11 ? TipoPessoaFisicaJuridicaEnum.F : TipoPessoaFisicaJuridicaEnum.J;
 	}
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 	
 	public void insereTipoPessoa(TipoPessoaEnum tipoNovo) {

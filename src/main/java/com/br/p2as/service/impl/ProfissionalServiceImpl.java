@@ -80,11 +80,17 @@ public class ProfissionalServiceImpl implements IProfissionalService{
 
 	@Override
 	public ProfissionalTO buscarPorCpf(String cpf) {
-		Optional<Profissional> optProfissional = repository.findByCPF(cpf);
-		if(!optProfissional.isPresent()) {
-			new ProfissionalNotFoundException("Profissional não encontrado");
+		try {
+			Optional<Profissional> optProfissional = repository.findByCPF(cpf);
+			if(optProfissional.isPresent()) {
+				return new ProfissionalTO(optProfissional.get());
+			}
+		
+		}catch(Exception e) {
+			new ProfissionalTO(); 
 		}
-		return new ProfissionalTO(optProfissional.get());
+		
+		return new ProfissionalTO();
 	}
 
 }

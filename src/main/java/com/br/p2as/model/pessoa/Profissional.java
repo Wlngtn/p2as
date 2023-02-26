@@ -13,9 +13,11 @@ import javax.persistence.Table;
 
 import com.br.p2as.model.profissional.LocalAtual;
 import com.br.p2as.model.profissional.Servico;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="TB_002_PROFISSIONAL")
+@JsonIgnoreProperties
 public class Profissional{
 	
 	@Id
@@ -33,7 +35,6 @@ public class Profissional{
 	private Pessoa pessoa;
 
 	public Profissional() {
-		super();
 	}
 
 	public Long getId() {

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,12 +26,14 @@ public class ServicoResource {
 	@Autowired
 	private IServicoService service;
 	
+	@CrossOrigin
 	@GetMapping("/servicos")
 	public List<Servico> getServicos(@PathVariable(value="idProfissional") long idProfissional) {
 		List<Servico> servicos = service.buscarTodos(Long.valueOf(idProfissional));
 		return servicos;
 	}
 	
+	@CrossOrigin
 	@GetMapping("/servicos/{id}")
 	public Servico getServico(@PathVariable(value="idProfissional") long idProfissional, @PathVariable(value="id") long id) {
 		Servico servico = service.buscarPorIdProfissionalId(Long.valueOf(idProfissional), Long.valueOf(id));
@@ -40,8 +43,9 @@ public class ServicoResource {
 		return servico;
 	}
 	
+	@CrossOrigin
 	@PostMapping("/servicos")
-	public ResponseEntity<Object> addProfissionais(@RequestBody Servico servico, @PathVariable(value="idProfissional") long idProfissional) {
+	public ResponseEntity<Object> addServico(@RequestBody Servico servico, @PathVariable(value="idProfissional") long idProfissional) {
 		try {
 			servico = service.criarServico(servico, Long.valueOf(idProfissional));
 			
@@ -59,8 +63,9 @@ public class ServicoResource {
 		return null;
 	}
 	
+	@CrossOrigin
 	@DeleteMapping("/servicos")
-	public void deleteProfissionais(@PathVariable(value="idProfissional") long idProfissional, @RequestBody Servico servico) {
+	public void deleteServico(@PathVariable(value="idProfissional") long idProfissional, @RequestBody Servico servico) {
 		
 		Servico servicoBusca = service.buscarPorIdProfissionalId(Long.valueOf(idProfissional), servico.getId());
 		

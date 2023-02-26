@@ -3,6 +3,9 @@ package com.br.p2as.webApi.rest;
 import java.net.URI;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.core.MediaType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -49,11 +52,13 @@ public class ProfissionalResource {
 	public ProfissionalTO getProfissionalCPF(@PathVariable(value="cpf") String cpf) {
 		ProfissionalTO profissionalTO = service.buscarPorCpf(cpf);
 		if(profissionalTO == null) {
-			throw new PessoaNotFoundException("cpf - " + cpf);
+			return new ProfissionalTO();
 		}
 		return profissionalTO;
 	}
 	
+	@CrossOrigin
+	@Consumes(MediaType.APPLICATION_JSON)
 	@PostMapping("/profissionais")
 	public ResponseEntity<Object> addProfissionais(@RequestBody Profissional profissional) {
 		try {

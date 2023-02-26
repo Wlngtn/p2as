@@ -27,7 +27,7 @@ public class PessoaServiceImpl implements IPessoaService{
 			return pessoaBusca;
 		}
 		
-		pessoa.setTipoPessoaFisicaJuridica(pessoa.retornaTipoFisicaJurida());
+		pessoa.setTipoPessoaFisicaJuridica(pessoa.retornaTipoFisicaJuridica());
 		pessoa.insereTipoPessoa(tipoPessoaNovo);
 		
 		pessoa = repository.save(pessoa);
