@@ -3,6 +3,7 @@ package com.br.p2as.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import com.br.p2as.model.profissional.Servico;
 import com.br.p2as.model.profissional.to.ServicoTO;
 import com.br.p2as.repository.ServicoRepository;
 import com.br.p2as.service.IServicoService;
+import com.br.p2as.utils.enums.SimNaoEnum;
 
 @Component
 public class ServicoServiceImpl implements IServicoService{
@@ -37,7 +39,7 @@ public class ServicoServiceImpl implements IServicoService{
 
 	@Override
 	public void excluirServico(Servico servico) {
-		repository.deleteById(servico.getId());		
+		repository.delete(servico);		
 	}
 
 	@Override
@@ -87,6 +89,30 @@ public class ServicoServiceImpl implements IServicoService{
 		}
 		
 		return servicosTO;
+	}
+
+	@Override
+	public void iniciarTodosAtendimentos(Profissional profissional) {
+		
+		List<Servico> servicos = (List<Servico>) repository.findByIdProfissional(profissional.getId()).stream().filter(s -> s.getAtivo().getIsAtivo()).collect(Collectors.toList());
+		
+		for(Servico servico : servicos) {
+			servico.setEmAtendimento(SimNaoEnum.S);
+			repository.save(servico);
+		}
+				
+	}
+	
+	@Override
+	public void ativar(Servico servico) {
+		servico.setAtivo(SimNaoEnum.S);
+		repository.save(servico);		
+	}
+	
+	@Override
+	public void inativar(Servico servico) {
+		servico.setAtivo(SimNaoEnum.N);
+		repository.save(servico);		
 	}
 
 }

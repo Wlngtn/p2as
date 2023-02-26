@@ -10,17 +10,19 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.p2as.exception.PessoaNotFoundException;
+import com.br.p2as.exception.ServicoNotFoundException;
 import com.br.p2as.model.profissional.Servico;
 import com.br.p2as.service.IServicoService;
 
 @RestController
-@RequestMapping(value="/v1/api/profissionais/{idProfissional}")
+@RequestMapping(value = "/v1/api/profissionais/{idProfissional}")
 public class ServicoResource {
 	
 	@Autowired
@@ -64,15 +66,28 @@ public class ServicoResource {
 	}
 	
 	@CrossOrigin
-	@DeleteMapping("/servicos")
-	public void deleteServico(@PathVariable(value="idProfissional") long idProfissional, @RequestBody Servico servico) {
+	@PostMapping("/servicos/inativar")
+	public void inativarServico(@PathVariable(value="idProfissional") long idProfissional, @RequestBody Servico servico) {
 		
 		Servico servicoBusca = service.buscarPorIdProfissionalId(Long.valueOf(idProfissional), servico.getId());
 		
 		if(servicoBusca == null) {
-			throw new PessoaNotFoundException("id - " + servico.getId());
+			throw new ServicoNotFoundException("id - " + servico.getId());
 		}
 		
-		service.excluirServico(servicoBusca);
+		service.inativar(servicoBusca);
+	}
+	
+	@CrossOrigin
+	@PostMapping("/servicos/ativar")
+	public void ativarServico(@PathVariable(value="idProfissional") long idProfissional, @RequestBody Servico servico) {
+		
+		Servico servicoBusca = service.buscarPorIdProfissionalId(Long.valueOf(idProfissional), servico.getId());
+		
+		if(servicoBusca == null) {
+			throw new ServicoNotFoundException("id - " + servico.getId());
+		}
+		
+		service.ativar(servicoBusca);
 	}
 }

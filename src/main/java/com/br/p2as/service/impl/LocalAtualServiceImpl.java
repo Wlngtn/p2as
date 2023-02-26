@@ -13,6 +13,7 @@ import com.br.p2as.model.profissional.LocalAtual;
 import com.br.p2as.repository.LocalAtualRepository;
 import com.br.p2as.repository.ProfissionalRepository;
 import com.br.p2as.service.ILocalAtualService;
+import com.br.p2as.service.IServicoService;
 
 @Component
 public class LocalAtualServiceImpl  implements ILocalAtualService{
@@ -22,6 +23,9 @@ public class LocalAtualServiceImpl  implements ILocalAtualService{
 
 	@Autowired
 	private ProfissionalRepository profissionalRepository;
+	
+	@Autowired
+	private IServicoService servicoService;
 
 	@Override
 	public List<LocalAtual> buscarPorProfissionalId(Long idProfissional) {
@@ -38,6 +42,8 @@ public class LocalAtualServiceImpl  implements ILocalAtualService{
 		}
 		
 		Profissional profissional = optProfissional.get();
+		
+		servicoService.iniciarTodosAtendimentos(profissional);
 		
 		inativarLocalizacaoAnterior(profissional.getId());
 		

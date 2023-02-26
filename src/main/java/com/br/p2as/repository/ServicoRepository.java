@@ -3,6 +3,7 @@ package com.br.p2as.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.lang.Nullable;
@@ -30,5 +31,9 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
 	@Nullable
 	@Query("from Servico order by ativo desc, emAtendimento desc, nota desc")
 	public List<Servico> buscaOrdenadoAtivoNota();
+
+	@Modifying
+	@Query("UPDATE Servico s set s.emAtendimento = 'S' where profissional.id = :id and ativo = 'S'")
+	public void iniciarTodosAtendimentosDeProfissional(@Param("id") Long id);
 
 }
