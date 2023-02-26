@@ -22,7 +22,7 @@ services:
       - p2as-network
  
   apigateway:
-    image: wlngtn/p2as-api-gateway:230225
+    image: wlngtn/p2as-api-gateway:230226
     ports:
       - "8765:8765"
     depends_on:
@@ -34,7 +34,7 @@ services:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://namingserver:8761/eureka
   
   apiCliente:
-   image: wlngtn/p2as-api:230225
+   image: wlngtn/p2as-api:230226
    ports:
      - "8086:8080"  
    depends_on:
@@ -60,7 +60,7 @@ services:
      timeout: 10s
      
   apiProfissional:
-   image: wlngtn/p2as-api:230225
+   image: wlngtn/p2as-api:230226
    ports:
      - "8082:8080"  
    depends_on:
@@ -83,7 +83,7 @@ services:
      timeout: 10s   
      
   apiServico:
-   image: wlngtn/p2as-api:230225
+   image: wlngtn/p2as-api:230226
    ports:
      - "8083:8080"  
    depends_on:
@@ -109,7 +109,7 @@ services:
      timeout: 10s
      
   apiLocalizacao:
-   image: wlngtn/p2as-api:230225
+   image: wlngtn/p2as-api:230226
    ports:
      - "8084:8080"  
    depends_on:
@@ -135,7 +135,7 @@ services:
      timeout: 10s
   
   apiResiliencia:
-   image: wlngtn/p2as-api:230225
+   image: wlngtn/p2as-api:230226
    ports:
      - "8085:8080"  
    depends_on:

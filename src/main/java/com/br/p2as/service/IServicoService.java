@@ -28,4 +28,6 @@ public interface IServicoService {
 
 	void ativar(Servico servicoBusca);
 
+	void finalizarTodosAtendimentos(Profissional profissional);
+
 }

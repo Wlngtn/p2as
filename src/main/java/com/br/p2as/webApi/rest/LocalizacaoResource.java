@@ -9,13 +9,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.br.p2as.exception.EnderecoNotFoundException;
 import com.br.p2as.exception.LocalAtualNotFoundException;
 import com.br.p2as.model.endereco.Endereco;
 import com.br.p2as.model.profissional.LocalAtual;
@@ -70,9 +68,10 @@ public class LocalizacaoResource {
 
 	}
 	
-	@PutMapping("/localizacao/{id}/inativar")
-	public ResponseEntity<Object> inativar(@PathVariable(value="idProfissional") long idProfissional, @PathVariable(value="idProfissional") long idLocalAtual) {
-		LocalAtual localAtual = service.inativarLocalizacao(idProfissional, idLocalAtual);
+	@CrossOrigin
+	@PostMapping("/localizacao/inativar")
+	public ResponseEntity<Object> inativar(@PathVariable(value="idProfissional") long idProfissional) {
+		LocalAtual localAtual = service.inativarLocalizacao(idProfissional);
 		
 		if(localAtual == null) {
 			throw new LocalAtualNotFoundException("Profissional não possui localização atual ativa");

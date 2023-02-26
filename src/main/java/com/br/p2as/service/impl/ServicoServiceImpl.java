@@ -104,6 +104,18 @@ public class ServicoServiceImpl implements IServicoService{
 	}
 	
 	@Override
+	public void finalizarTodosAtendimentos(Profissional profissional) {
+		
+		List<Servico> servicos = (List<Servico>) repository.findByIdProfissional(profissional.getId()).stream().filter(s -> s.getAtivo().getIsAtivo()).collect(Collectors.toList());
+		
+		for(Servico servico : servicos) {
+			servico.setEmAtendimento(SimNaoEnum.N);
+			repository.save(servico);
+		}
+				
+	}
+	
+	@Override
 	public void ativar(Servico servico) {
 		servico.setAtivo(SimNaoEnum.S);
 		repository.save(servico);		

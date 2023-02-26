@@ -73,7 +73,7 @@ public class LocalAtualServiceImpl  implements ILocalAtualService{
 	}
 	
 	@Override
-	public LocalAtual inativarLocalizacao(Long idProfissional, Long idLocalAtual) {
+	public LocalAtual inativarLocalizacao(Long idProfissional) {
 		
 		Optional<Profissional> optProfissional = profissionalRepository.findById(idProfissional);
 		
@@ -83,14 +83,15 @@ public class LocalAtualServiceImpl  implements ILocalAtualService{
 		
 		Profissional profissional = optProfissional.get();
 		
-		Optional<LocalAtual> optLocalAtivo = repository.findById(idLocalAtual);
+		LocalAtual localAtivo = repository.buscarAtivo(profissional.getId());
 		
-		if(!optLocalAtivo.isPresent()) {
+		if(localAtivo == null) {
 			throw new LocalAtualNotFoundException("Locaização não cadastrada!");
 		}
 		
-		LocalAtual localAtivo = optLocalAtivo.get();
-		localAtivo.setProfissional(profissional);
+		
+		servicoService.finalizarTodosAtendimentos(profissional);
+		
 		localAtivo.inativar();
 		
 		return repository.save(localAtivo);

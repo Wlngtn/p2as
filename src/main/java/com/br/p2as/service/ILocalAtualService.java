@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.br.p2as.model.pessoa.Profissional;
 import com.br.p2as.model.profissional.LocalAtual;
 
 @Service
@@ -16,6 +15,6 @@ public interface ILocalAtualService {
 
 	LocalAtual buscarAtivoPorProfissionalId(Long idProfissional);
 
-	LocalAtual inativarLocalizacao(Long idProfissional, Long idLocalAtual);
+	LocalAtual inativarLocalizacao(Long idProfissional);
 
 }
